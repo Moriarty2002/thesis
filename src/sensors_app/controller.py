@@ -15,7 +15,6 @@ active_requests = Gauge('sensors_active_requests', 'Active HTTP requests', ['met
 
 
 def get_collection(name: str) -> collection.Collection:
-    # return MongoClient("mongo_db", 27017).get_database("sensors").get_collection(name)
     return MongoClient(os.environ['MONGO_HOST_NAME'], int(os.environ['MONGO_HOST_PORT'])).get_database("sensors").get_collection(name)
 
 
@@ -80,7 +79,7 @@ def www():
     return render_template( "test.html", name="Unnamed User", 
                             temp_data=temp_list, 
                             press_data=press_list
-                           )
+                        )
 
 
 # Define a route to expose the metrics

@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: sensors-http-error
+  namespace: observability
+  labels:
+    app: sensors
+    release: kube-prom-stack
+spec:
+  groups:
+    - name: sensors-http-error
+      rules:
+        - alert: BadArgumentError
+          expr: increase(sensors_http_error_arguments_count_total[3m]) > 0
+          labels:
+            app: sensors
+            severity: warning
+          annotations:
+            summary: "Bad argument passed"
+            description: "A user has passed a bad argument to: {{ $labels.exported_endpoint}}"

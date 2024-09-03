@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: be-flask-dp
+  labels:
+    app: sensors
+    tier: be
+    type: deploy
+spec:
+  selector:
+    matchLabels:
+      app: sensors
+      tier: be
+      type: flask
+  replicas: 2
+  template:
+    metadata:
+      labels:
+       app: sensors
+       tier: be
+       type: flask
+    spec:
+      containers:
+        - name: be-flask
+          image: moriarty2002/flask-sensors:prometheus
+          ports:
+            - containerPort: 5000
+          env:
+            - name: MONGO_HOST_NAME
+              value: "mongodb-service"
+            - name: MONGO_HOST_PORT
+              value: "27017"
+          imagePullPolicy: Always

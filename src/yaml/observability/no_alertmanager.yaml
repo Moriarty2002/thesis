@@ -1,0 +1,11 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Alertmanager
+metadata:
+  name: sensors-alertmanager
+  namespace: observability
+spec:
+  replicas: 1
+  alertmanagerConfigSelector:
+    matchLabels:
+      app: sensors
+      tier: alertmanager_config

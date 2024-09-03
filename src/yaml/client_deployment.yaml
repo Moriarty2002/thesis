@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-dp
+  labels:
+    app: sensors
+    tier: client
+    type: deploy
+spec:
+  selector:
+    matchLabels:
+      app: sensors
+      tier: client
+      type: script
+  replicas: 2
+  template:
+    metadata:
+      labels:
+       app: sensors
+       tier: client
+       type: script
+    spec:
+      containers:
+        - name: client
+          image: moriarty2002/flask-sensors:client
+          env:
+            - name: BE_HOST_NAME
+              value: "be-flask-sv"
+            - name: BE_HOST_PORT
+              value: "80"
+          imagePullPolicy: Always

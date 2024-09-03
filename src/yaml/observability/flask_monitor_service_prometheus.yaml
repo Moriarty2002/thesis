@@ -1,0 +1,24 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: be-flask-svm-prometheus
+  namespace: observability
+  labels:
+    release: kube-prom-stack
+    app: sensors
+    tier: be
+    type: servicemonitor
+spec:
+  namespaceSelector:
+    matchNames:
+      - default
+  endpoints:
+  - port: be-port
+    path: '/metrics'
+    interval: 90s
+  selector:
+    matchLabels:
+      app: sensors
+      tier: be
+      type: service
+

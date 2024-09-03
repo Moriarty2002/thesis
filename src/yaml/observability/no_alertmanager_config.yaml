@@ -1,0 +1,27 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: sensors-alertmanager-config
+  namespace: observability
+  labels:
+    app: sensors
+    tier: alertmanager_config
+spec:
+  route:
+    groupBy: ['sensors-http-error']
+    groupWait: 30s
+    groupInterval: 5m
+    repeatInterval: 10m
+    receiver: 'slack-receiver'
+    routes:
+      - matchers:
+        - severity: "warning"
+          receiver: 'slack-receiver'
+  receivers:
+    - name: 'slack-receiver'
+      slackConfigs:
+        - apiURL:
+            key: 'webhookURL'
+            name: 'slack-webhook'
+          channel: '#thesis'
+          text: '{{ range .Alerts }}{{ .Annotations.summary }}\n{{ .Annotations.description }}'

@@ -1,0 +1,19 @@
+\chapter*{Introduzione}
+
+\addcontentsline{toc}{chapter}{Introduzione}
+
+Nei sistemi moderni, il deployment delle applicazioni si basa sempre più sui container. Tuttavia gestire il ciclo di vita di numerosi container, richiede molte operazioni ripetitive che possono essere automatizzate utilizzando gli orchestratori di container, mentre per mantenere sotto controllo lo stato di salute del sistema sono stati creati gli strumenti di monitoraggio.
+
+\subsubsection{Obiettivo della tesi}
+L'obiettivo di questo elaborato è di approfondire il monitoraggio di \textbf{Kubernetes} \cite{Kubernetes} attraverso \textbf{Prometheus} \cite{Prometheus}, sfruttando il contesto del progetto \textit{Mutiny} \cite{Paper}, nel quale è stata condotta una campagna di fault / error injection su un cluster Kubernetes  con target l'etcd, il database key-value utilizzato per gestire lo stato del cluster.
+\\
+In particolare è stata approfondita la correlazione tra i tipi di errori causati dalla campagna ed un subset delle metriche ottenute attraverso il tool di monitoraggio \textbf{Prometheus} sul cluster, in maniera tale da poter poi dimostrare come sia possibile ricavare delle apposite regole di \textbf{alerting} per prevenire l'indisponibilità dei servizi offerti.
+
+\subsubsection{Struttura dell'elaborato}
+Questo elaborato è suddiviso in diversi capitoli, dove inizialmente sono introdotti i concetti e le tecnologie utilizzate per poi approfondire in che modo possono essere sfruttate.
+
+\begin{itemize}
+    \item \textbf{\nameref{chap:monitorin-kubernetes}}: Nel primo capitolo viene introdotto il concetto di monitoraggio e il funzionamento di un cluster Kubernetes.
+    \item \textbf{\nameref{chap:Prometheus}}: In questo capitolo viene approfondito il framework di monitoraggio Prometheus e riprodotto un ambiente simile a quello utilizzato nella campagna di injection, in locale.
+    \item \textbf{\nameref{chap:Dataset}}: Nell'ultimo capitolo viene approfondito il dataset ricavato con Prometheus durante la campagna di injection per poi effettuarci una serie di analisi, in modo da comprendere come si possa utilizzare il monitoraggio su un cluster Kubernetes per evitare disservizi agli utenti.
+\end{itemize}

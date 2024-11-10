@@ -91,8 +91,35 @@ This type of analysis can help in fine-tuning system performance, understanding 
 ## Best Practices
 
 - **Ensure Dataset Consistency**: Make sure the dataset has consistent time stamps, metric names, and other fields across all runs.
-- **Test Incrementally**: Start with small subsets of your dataset to ensure the notebook works as expected before processing larger amounts of data.
-- **Read the thesis**: To fully understand the context of the notebook, I recommend reading at least chapter 3 of the thesis in the Docs folder. 
+- **Test Incrementally**: Start with small subsets of your dataset to ensure the notebook works as expected before processing larger data.
+- **Read the thesis**: To understand the context of the notebook fully, I recommend reading at least chapter 3 of the thesis in the Docs folder.
+
+
+
+# Example of customizing plots
+
+When you have decided which metrics to plot, it is already possible to do a quick plot customization.
+
+## BoxPlot - ViolinPlot
+
+![image](https://github.com/user-attachments/assets/6537d033-7f40-44d9-9456-079eadb3073c)
+
+
+To make a box plot [violin plot] you can pass the list of metrics to plot,  a list of properties used to split the plots (eg. the instance of the node), the elements to not plot (referred to the split by properties), if the plot has to be a violin plot, the title of the plots (eg. a clearer metric's name), the y label of the plot (eg. bytes), the data's value to show (eg. value, sum, avg, ...) and if to print also the properties used to split the plots in the title.
+
+#### example
+![image](https://github.com/user-attachments/assets/dc0da3c0-e106-476a-8f04-391636073efd)
+
+
+## Heatmap
+
+![image](https://github.com/user-attachments/assets/b4ce73e6-aa4d-495a-bc45-8ba844a5b472)
+
+To make a heat map the process is pretty similar to box plots and violin plots, just one specific parameter that has been added is show numbers, this allows you to choose to print the numeric values of the heatmap's cells and their colors or only show colors.
+
+#### example
+![image](https://github.com/user-attachments/assets/a9d016b6-7c9e-4bb3-9907-3dfc3c42379e)
+
 
 ---
 
